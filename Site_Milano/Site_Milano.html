@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Italiano</title>
+    <style>
+       .bebas-neue-regular {
+            font-family: "Bebas Neue", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #header {
+            background-image: url('img/italia.jpg'); /* Aqui você pode inserir a foto ao topo do site */
+            background-size:  auto 100%;
+            background-position: center top; /* Alterado para alinhar o centro da imagem da bandeira italiana com o topo */
+            text-align: center;
+            padding: 20px 0;
+        }
+        #logo {
+            background-image: url('img/imagem.jpg');
+            background-size: cover;
+            background-position: center;
+            display: inline-block;
+            border: 5px solid black;
+            border-radius: 50%;
+            padding: 10px;
+            background-color: #fff; /* Removi a bandeira italiana do fundo do logo */
+            width: 150px;
+            height: 150px;
+            display: inline-block;
+        }
+        #menu {
+            text-align: center;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+            margin-top: 50px;
+            list-style-type: none;
+        }
+        .option {
+            font-size: 30px;
+            display: list-item;
+            margin: 0 20px;
+            padding: 10px 20px;
+            color: #000;
+            text-decoration: none;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            position:relative;
+        }
+        .option:hover {
+            color: #fff;
+            
+        }
+        .option:hover::before {
+            content: ''; /* Adicionado um pseudo-elemento */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: auto; /* Definindo a largura igual à largura do texto */
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo ao passar o mouse */
+            border-radius: 20px; /* Raio do círculo em volta do texto */
+            z-index: -1; /* Colocado atrás do texto */
+            
+        }
+
+        #contact {
+            background-color: #065304;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .slideshow-container {
+            background-color: rgb(255, 0, 51);
+            border-radius: 10%;
+            position: absolute;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+        }
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0);
+            color: white;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .prev:hover, .next:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+        .template-container {
+            background-color: rgb(255, 0, 51);
+            border-radius: 10%;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+        }
+        .template-text {
+            font-size:150%;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: #333;
+            text-align: center;
+        }
+        .template-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        .template-slide img {
+            width: 100%;
+            height: 100%;
+        }
+        .template-prev, .template-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0);
+            color: white;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .template-prev:hover, .template-next:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .template-prev {
+            left: 0;
+        }
+        .template-next {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div id="logo"></div>
+</div>
+
+<div id="menu">
+    <a href="Menu_Milano.html" class="option">MENU</a>
+    <a href="Pedido_para_levar.html" class="option">LER QRCODE</a>
+    <a href="Pedido_para_levar.html" class="option">PEDIDOS PARA LEVAR</a>
+    <a href="#" class="option">INFORMAÇÕES</a>
+</div>
+
+<div id="contact">
+    <p>Número para reservas, contato: (54) xxxxx-xxxx</p>
+</div>
+
+<div class="slideshow-container">
+    <div class="template-text">~ Nossas massas ~</div>
+    <div class="slide">
+        <img src="img/prato1.jpg" alt="Prato 1">
+    </div>
+    <div class="slide">
+        <img src="img/prato2.jpg" alt="Prato 2">
+    </div>
+    <div class="slide">
+        <img src="img/prato3.jpg" alt="Prato 3">
+    </div>
+    <div class="slide">
+        <img src="img/prato4.jpg" alt="Prato 4">
+    </div>
+    <button class="prev" onclick="plusSlides(-1)">❮</button>
+    <button class="next" onclick="plusSlides(1)">❯</button>
+</div>
+
+<div class="template-container">
+    <div class="template-text">~ Nossas carnes ~</div>
+    <div class="template-slide">
+        <img src="img/prato11.jpg" alt="Prato 1">
+    </div>
+    <div class="template-slide">
+        <img src="img/prato22.jpg" alt="Prato 2">
+    </div>
+    <div class="template-slide">
+        <img src="img/prato33.jpg" alt="Prato 3">
+    </div>
+    <div class="template-slide">
+        <img src="img/prato44.jpg" alt="Prato 4">
+    </div>
+    <button class="template-prev" onclick="plusSlidesTemplate(-1)">❮</button>
+    <button class="template-next" onclick="plusSlidesTemplate(1)">❯</button>
+</div>
+
+<script>
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var slides = document.getElementsByClassName("slide");
+        for (var i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}
+        slides[slideIndex-1].style.display = "block";
+        setTimeout(showSlides, 5000); // Change image every 3 seconds
+    }
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+var templateIndex = 0;
+showSlidesTemplate();
+
+function showSlidesTemplate() {
+    var slides = document.getElementsByClassName("template-slide");
+    for (var i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    templateIndex++;
+    if (templateIndex > slides.length) {templateIndex = 1}
+    slides[templateIndex-1].style.display = "block";
+    setTimeout(showSlidesTemplate, 5000); // Change image every 3 seconds
+}
+
+function plusSlidesTemplate(n) {
+    showSlidesTemplate(templateIndex += n);
+}
+</script>
+
+</body>
+</html>
+
