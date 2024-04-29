@@ -443,7 +443,7 @@
 // Função para mostrar a matriz correspondente ao tipo de prato selecionado
 function mostrarMatriz() {
     // Esconder todas as matrizes
-    document.querySelectorAll('[id^="matriz"]').forEach(function (element) {
+    document.querySelectorAll('[id*="matriz"]').forEach(function (element) {
         element.style.display = 'none';
     });
 
@@ -451,7 +451,7 @@ function mostrarMatriz() {
     var tipoPrato = document.getElementById("tipoPrato").value;
 
     // Mostrar a matriz correspondente ao tipo de prato selecionado
-    document.getElementById("matriz" + tipoPrato.charAt(0).toUpperCase() + tipoPrato.slice(1)).style.display = 'block';
+    document.getElementById( "matriz" + tipoPrato.charAt(0).toUpperCase() + tipoPrato.slice(1)).style.display = 'block';
 }
 // Variável global para armazenar o valor total
 var valoresPratos = {};

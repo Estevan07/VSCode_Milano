@@ -117,6 +117,10 @@
             border-radius: 5px;
              /* Inicialmente, torna o botão não clicável */
         }
+        #cartao_debito{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin:5px;
+        }
 
     </style>
 </head>
@@ -134,6 +138,7 @@
         <label for="formaRetirada"></label>
         <select id="formaRetirada" onchange="mostrarOpcoesRetirada()">
             <option value="none" selected disabled hidden>Forma de Retirada</option>
+            <option value="cartao_debito">Cartao Debito</option>
             <option value="tele_entrega">Tele-Entrega</option>
             <option value="para_levar">Para Levar</option>
         </select>
@@ -172,7 +177,9 @@
         <input type="datetime-local" id="horarioRetiradaPL">
         
     </div>
-
+    <div id="cartao_debito" style="display: none">
+        <h1>ola mundo </h1>
+    </div>
     <!-- Botão de Pagamento -->
     <button id="botaoPagamento" onclick="validarCampos()">Ir para o Pagamento</button>
 
