@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Italiano</title>
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background-color:white;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            text-align: center; /* Centralizar conteúdo */
+            padding-top: 140px
+        }
+        #header {
+            background-image: url('img/italia.jpg'); /* Aqui você pode inserir a foto ao topo do site */
+            background-size:  auto 100%;
+            background-position: center top;
+            position: absolute; /* Posicionamento absoluto */
+            top: 0; /* Colocar no topo */
+            left: 0; /* Colocar no canto esquerdo */
+            right: 0;
+            
+            
+            padding: 20px;
+            text-align: center;
+            display: flex; /* Usar flexbox para alinhar verticalmente */
+            border-bottom-right-radius: 5%;
+            border-bottom-left-radius: 5%;
+        }
+        #contact {
+            background-color: #065304;
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        #menu-logo {
+            border: 5px solid black;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            background-image: url('img/imagem.jpg');
+            background-size: cover;
+            margin-right: 20px;
+            display: inline-block; /* Para alinhar verticalmente com o texto */
+        }
+        #menu-title {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 40px;
+            display: inline-block; /* Para alinhar verticalmente com o logo */
+            vertical-align: middle; /* Alinhar verticalmente com o logo */
+            margin-top: 40px;
+        }
+        #texto_interativo{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin-top: 15px;
+        }
+        ul{
+            list-style-type: none;
+        }
+        #forma_pagamento{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            float:left;
+            padding-top: 30px;
+            padding-left: 45px;
+        }
+        #opcoes_dinheiro{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin:5px;
+            margin-top: 40px;
+        }
+        #Troco{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            
+            margin-top:80px;
+        }
+        #opcoes_pix{
+            position:relative;
+            margin-top: 25px;
+            float:left  
+        }
+        #pix{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin-top:20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="header">
+        <div id="menu-logo"></div>
+        <div id="menu-title">Finalizar Pagamento Tele</div>
+    </div>
+    <div id="contact">
+        <p>Número para reservas, contato: (54) xxxxx-xxxx</p>
+    </div>
+    <div id="forma_pagamento">
+        <label for="formaPagamento"></label>
+        <select id="formaPagamento" onchange="mostrarOpcoesRetirada()">
+            <option value="none" selected disabled hidden>Forma de Pagamento</option>
+            <option value="opcoes_dinheiro">Dinheiro</option>
+            <option value="opcoes_pix">Pix</option>
+        </select>
+    </div>
+    <div id="opcoes_dinheiro" style="display: none;">
+        <label for="Troco">Troco para:</label>
+    </div>
+    <div id="opcoes_pix" style="display: none;">
+        <text>Valor: </text>
+        <br>
+        <label for="pix">Chave Pix: (54) 99946-0291</label>
+        <br>
+        <text>para este mesmo número enviar o comprovante do dinheiro</text>
+    </div>
+    <script>
+        function mostrarOpcoesRetirada() {
+            var formaRetirada = document.getElementById("formaPagamento").value;
+
+            // Esconder todas as opções
+            document.getElementById("opcoes_dinheiro").style.display = "none";
+            document.getElementById("opcoes_pix").style.display = "none";
+
+            // Mostrar as opções correspondentes à forma selecionada
+            if (formaRetirada === "opcoes_pix") {
+                document.getElementById("opcoes_pix").style.display = "block";
+            } else if (formaRetirada === "opcoes_dinheiro") {
+                document.getElementById("opcoes_dinheiro").style.display = "block";
+            }
+        }
+    </script>

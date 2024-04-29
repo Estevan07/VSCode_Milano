@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Italiano</title>
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background-color:white;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            text-align: center; /* Centralizar conteúdo */
+            padding-top: 140px
+        }
+        #header {
+            background-image: url('img/italia.jpg'); /* Aqui você pode inserir a foto ao topo do site */
+            background-size:  auto 100%;
+            background-position: center top;
+            position: absolute; /* Posicionamento absoluto */
+            top: 0; /* Colocar no topo */
+            left: 0; /* Colocar no canto esquerdo */
+            right: 0;
+            
+            
+            padding: 20px;
+            text-align: center;
+            display: flex; /* Usar flexbox para alinhar verticalmente */
+            border-bottom-right-radius: 5%;
+            border-bottom-left-radius: 5%;
+        }
+        #contact {
+            background-color: #065304;
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        #menu-logo {
+            border: 5px solid black;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            background-image: url('img/imagem.jpg');
+            background-size: cover;
+            margin-right: 20px;
+            display: inline-block; /* Para alinhar verticalmente com o texto */
+        }
+        #menu-title {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 40px;
+            display: inline-block; /* Para alinhar verticalmente com o logo */
+            vertical-align: middle; /* Alinhar verticalmente com o logo */
+            margin-top: 40px;
+        }
+        #texto_interativo{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin-top: 25px;
+        }
+        ul{
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="header">
+        <div id="menu-logo"></div>
+        <div id="menu-title">Informações</div>
+    </div>
+    <div id="texto_interativo">
+        <ul>
+            <h3>LOCALIZAÇÃO</h3>
+            <li> Av. Júlio de Castilhos, 3135 - São Pelegrino </li>
+            <li> Caxias do Sul - RS, 95010-000</li>
+            <br>
+            <h3>HORÁRIO DE TRABALHO</h3>
+            <li>durante a semana: 11:00 - 14:00 / 18:30 - 22:00</li>
+            <li>durante a final de semana: 11:00 - 14:30 / 18:30 - 22:30</li>
+            <br>
+            <br>
+            <h3>NOSSA HISTÓRIA</h3>
+            <li>Bem-vindo ao Restaurante Milano, um lugar onde a tradição e o sabor se encontram para criar uma experiência culinária única e memorável. Nossa história remonta às pitorescas paisagens da Itália, onde a rica herança gastronômica é uma parte essencial da cultura.
+            Há muitas décadas, em uma pequena vila nas colinas da Toscana, a família Milano começou a compartilhar sua paixão pela culinária italiana com o mundo. O patriarca, Nonno Giovanni, trouxe consigo receitas transmitidas de geração em geração, cada uma carregada de história e tradição.<li>
+            <br>
+            <li>À medida que as décadas passaram, essas receitas se tornaram os pilares do que é hoje o Restaurante Milano. Cada prato é uma celebração da autenticidade e do amor pela cozinha italiana, desde as massas frescas feitas à mão até os molhos que borbulham lentamente no fogão.
+            
+                Mas o Milano é mais do que apenas comida; é um lugar de encontro, onde famílias se reúnem para celebrar ocasiões especiais e amigos se encontram para desfrutar de uma boa refeição e uma conversa animada. É um refúgio da agitação da vida cotidiana, onde você pode se deixar levar pelo aroma sedutor de manjericão fresco e tomates maduros.</li>
+            <br>
+            <li>Nossa missão é simples: proporcionar a você uma experiência gastronômica que desperte todos os seus sentidos e o transporte diretamente para as ruas de Roma ou as margens do Lago de Como. Cada prato é uma homenagem à paixão e dedicação que colocamos em cada preparação, e cada cliente é tratado como parte de nossa família.
+            
+                No Restaurante Milano, você não está apenas jantando; você está fazendo parte de uma tradição que atravessa gerações. Então, junte-se a nós enquanto embarcamos nesta jornada culinária, onde cada garfada é uma viagem à terra do sol, do vinho e da boa comida. Buon appetito!</li>
+        </ul>
+    </div>
+    <div id="contact">
+        <p>Número para reservas, contato: (54) xxxxx-xxxx</p>
+    </div>
+    

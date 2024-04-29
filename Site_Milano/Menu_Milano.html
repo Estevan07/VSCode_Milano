@@ -7,19 +7,21 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color:firebrick;
+            background-color:white;
             margin: 0;
             padding: 0;
             position: relative;
             text-align: center; /* Centralizar conteúdo */
-            padding-top: 140px
+            padding-top: 140px;
         }
         #header {
+            background-image: url('img/italia.jpg'); /* Aqui você pode inserir a foto ao topo do site */
+            background-size:  auto 100%;
+            background-position: center top;
             position: absolute; /* Posicionamento absoluto */
             top: 0; /* Colocar no topo */
             left: 0; /* Colocar no canto esquerdo */
             right: 0;
-            background-color: firebrick;
             padding: 20px;
             text-align: center;
             display: flex; /* Usar flexbox para alinhar verticalmente */
@@ -33,6 +35,7 @@
             position: fixed;
             bottom: 0;
             width: 100%;
+            z-index: 2;
         }
         #menu-logo {
             border: 5px solid black;
@@ -51,39 +54,62 @@
             vertical-align: middle; /* Alinhar verticalmente com o logo */
             margin-top: 40px;
         }
+        #texto_interativo{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin-top: 15px;
+        }
+        ul {
+            list-style-type: none;
+        }
         #menu-options {
-            position: absolute;
-            top: 140px; /* Posicionamento abaixo do nível do logo */
-            border-radius: 10%;
-            left: 25%; /* Centralizar horizontalmente */
-            transform: translateX(-50%);
-            background-color: #fff;
-            border: 1px solid #ccc;
+            position: relative;
+            color:white;
+            margin-top: 40px; /* Posicionamento abaixo do nível do logo */
+            font-size: 15px;
+            margin-left: 400px;
+            margin-right: 400px;
+            cursor:pointer;
             padding: 10px;
-            display: inline; 
-            z-index: 1;
+            border-radius:0;
+            border: 2px solid brown;
+            background-color: brown;
+            
         }
         .menu-option {
-            cursor: pointer;
+            position:relative;
+            color:white;
+            background-color: brown;
+            
             padding: 5px;
+            border: 0.2px solid brown;
             transition: background-color 0.3s ease;
+            z-index: 1;
         }
         .menu-option:hover {
-            background-color: #f2f2f2;
+            background-color:rgb(179, 97, 97);
         }
         #menu-image {
             max-width: 80%; /* Define a largura máxima da imagem */
             max-height: 80vh; /* Define a altura máxima da imagem */
             margin: 0 auto;
-            margin-top: 100px;
+            margin-top: 75px;
             margin-bottom: 100px;
-            display: none;
+            display:none;
         }
         #select-option {
             display: inline-block;
+            cursor: pointer; /* Mudança para cursor de ponteiro */
         }
-        #dropdown {
-            cursor: pointer;
+        #options-list {
+            display: none;
+            position: absolute; /* Posição absoluta para sobrepor outros elementos */
+            top: 100%; /* Alinhar abaixo do seletor */
+            left: 0;
+            width: 100%;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-top: none; /* Remover a borda superior */
+            border-radius: 0 0 5px 5px; /* Adicionar borda arredondada na parte inferior */
         }
     </style>
 </head>
@@ -93,15 +119,20 @@
     <div id="menu-logo"></div>
     <div id="menu-title">Menu</div>
 </div>
-
+<div id="texto_interativo">
+    <ul>
+        <li>~ Neste campo você pode encontrar nosso menu interativo para pedidos para retirada e em tele-entrega ~</li>
+        <li>~ Sobremesas são negociáveis apenas por meio de ligações ~</li>
+        <li>~ Acompanhamentos de cada prato são visíveis na aba "menu" na página inicial ~</li>
+    </ul>
+</div>
 <div id="contact">
     <p>Número para reservas, contato: (54) xxxxx-xxxx</p>
 </div>
 
 <div id="menu-options">
-    <div id="select-option">Selecione o prato:</div>
-    <span id="dropdown">&#9660;</span>
-    <div id="options-list" style="display: none;">
+    <div id="select-option" onclick="toggleOptionsList()">Selecione o prato</div>
+    <div id="options-list">
         <div class="menu-option" onclick="showImage('img/cardapio_file.jpg')">Pratos com Filé Mignon</div>
         <div class="menu-option" onclick="showImage('img/cardapio_picanha.jpg')">Pratos com Picanha</div>
         <div class="menu-option" onclick="showImage('img/cardapio_bife.jpg')">Pratos com Bife (Coxão Mole)</div>
@@ -115,18 +146,17 @@
 
 <script>
     var optionsList = document.getElementById("options-list");
-    var dropdown = document.getElementById("dropdown");
-    var menuImage = document.getElementById("menu-image");
-
-    dropdown.addEventListener("click", function() {
-        if (optionsList.style.display === "none") {
+    
+    function toggleOptionsList() {
+        if (optionsList.style.display === "none" || optionsList.style.display === "") {
             optionsList.style.display = "block";
         } else {
             optionsList.style.display = "none";
         }
-    });
+    }
 
     function showImage(imageName) {
+        var menuImage = document.getElementById("menu-image");
         menuImage.src = imageName;
         menuImage.style.display = "block";
         optionsList.style.display = "none";

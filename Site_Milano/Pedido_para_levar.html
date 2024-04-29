@@ -3,18 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escolha o Pedido</title>
     <style>
         body{
-            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-family: Arial, sans-serif;
+            background-color:white;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            text-align: center; /* Centralizar conteúdo */
+            padding-top: 10px
         }
-        h2 {
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            color: #000000;
+        #header {
+            background-image: url('img/italia.jpg'); /* Aqui você pode inserir a foto ao topo do site */
+            background-size:  auto 100%;
+            background-position: center top;
+            position: relative; /* Posicionamento absoluto */
+            top: 0; /* Colocar no topo */
+            left: 0; /* Colocar no canto esquerdo */
+            right: 0;
+            align-items: left;
+            padding: 20px;
+            text-align: left;
+            display: flex; /* Usar flexbox para alinhar verticalmente */
+            border-bottom-right-radius: 5%;
+            border-bottom-left-radius: 5%;
         }
+        #texto_interativo{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin-top: 15px;
+        }
+        ul {
+            list-style-type: none;
+       
+        }
+        #menu-logo {
+            border: 5px solid black;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            background-image: url('img/imagem.jpg');
+            background-size: cover;
+            margin-right: 15px;
+            display: inline-block; /* Para alinhar verticalmente com o texto */
+
+        }
+        #menu-title {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 30px;
+            display: inline-block; /* Para alinhar verticalmente com o logo */
+            vertical-align: middle; /* Alinhar verticalmente com o logo */
+            margin-top: 40px;
+        }
+        #tipoPrato {
+            font-size: 15px;
+            block-size: 35px;
+            margin-top: 20px; /* Adiciona uma margem superior de 20px */
+            background-color: brown;
+            color:white;
+            cursor:pointer;
+        }
+
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse:initial;
+            background-color: white;
+            font-family:Georgia, 'Times New Roman', Times, serif;
         }
         th, td {
             border: 1px solid black;
@@ -23,7 +76,7 @@
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: firebrick;
         }
 
         /* Sombreado circular */
@@ -39,7 +92,7 @@
             width: 100%;
             height: 100%;
             border-radius: inherit;
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: (0, 0, 0, 0.3);
             z-index: -1;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -48,14 +101,57 @@
         .sombreado:hover::before {
             opacity: 1;
         }
+        .topo_matrix{
+            padding-top :20px;
+            display: none; /* Oculta as matrizes de pratos por padrão */
+            padding-bottom: 150px;
+        }
+        #contact {
+            background-color: #065304;
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        #total {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+        }
+        #proxima_pagina{
+            position: right;
+            display: inline-block; /* Para alinhar verticalmente com o logo */
+            vertical-align: middle;
+            block-size: 20px;
+            background-color: aqua;
+            border: 1px solid black;
+        }
     </style>
 </head>
 <body>
 
-<h2>Escolha o Pedido:</h2>
+<div id="header">
+    <div id="menu-logo"></div>
+    <div id="menu-title">Escolha o Pedido</div>
+    
+</div>
+<div id="texto_interativo">
+    <ul>
+        <li>~ Neste campo você pode encontrar nosso menu interativo para pedidos para retirada e em tele-entrega ~<li>
+        <li>~ Sobremesas são negociáveis apenas por meio de ligações ~</li>
+        <li>~ Acompanhamentos de cada prato são visíveis na aba "menu" na página inicial ~</li>
+    </ul>
+</div>
 
-<!-- Seletor de tipo de prato -->
-<label for="tipoPrato">Escolha o tipo de prato: </label>
+<div id="contact">
+    <p>Número para reservas, contato: (54) xxxxx-xxxx</p>
+</div>
+<label for="tipoPrato"></label>
 <select id="tipoPrato" onchange="mostrarMatriz()">
     <option value="none" selected disabled hidden>Selecione um tipo de prato</option>
     <option value="file">Pratos com Filé</option>
@@ -68,8 +164,9 @@
     <option value="porcoes">Porções</option>
 </select>
 
+
 <!-- Matrizes ocultas para cada tipo de prato -->
-<div id="matrizFile" style="display: none;">
+<div id="matrizFile" class="topo_matrix" style="display: none;">
     <table>
         <thead>
             <tr>
@@ -94,11 +191,16 @@
                 <td>250,00</td>
                 <td><input type="number" value="0" min="0"></td>
             </tr>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td><a href="pagina_pagamento.html" class="proxima_pagina">pagina de pagamento >></a></td>
+            </tr>
         </tbody>
     </table>
 </div>
 
-<div id="matrizBife" style="display: none;">
+<div id="matrizBife" class="topo_matrix" style="display: none;">
     <table>
         <thead>
             <tr>
@@ -123,11 +225,17 @@
                 <td>220,00</td>
                 <td><input type="number" value="0" min="0"></td>
             </tr>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td><a href="pagina_pagamento.html" class="proxima_pagina">pagina de pagamento >></a></td>
+            </tr>
         </tbody>
     </table>
 </div>
 
-<div id="matrizFrango" style="display: none;">
+
+<div id="matrizFrango" class="topo_matrix" style="display: none;">
     <table>
         <thead>
             <tr>
@@ -152,11 +260,16 @@
                 <td>220,00</td>
                 <td><input type="number" value="0" min="0"></td>
             </tr>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td><a href="pagina_pagamento.html" class="proxima_pagina">pagina de pagamento >></a></td>
+            </tr>
         </tbody>
     </table>
 </div>
 
-<div id="matrizPicanha" style="display: none;">
+<div id="matrizPicanha" class="topo_matrix" style="display: none;">
     <table>
         <thead>
             <tr>
@@ -181,11 +294,16 @@
                 <td>220,00</td>
                 <td><input type="number" value="0" min="0"></td>
             </tr>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td><a href="pagina_pagamento.html" class="proxima_pagina">pagina de pagamento >></a></td>
+            </tr>
         </tbody>
     </table>
 </div>
 
-<div id="matrizPizza" style="display: none;">
+<div id="matrizPizza" class="topo_matrix" style="display: none;">
     <table>
         <thead>
             <tr>
@@ -210,11 +328,16 @@
                 <td>106,00</td>
                 <td><input type="number" value="0" min="0"></td>
             </tr>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td><a href="pagina_pagamento.html" class="proxima_pagina">pagina de pagamento >></a></td>
+            </tr>
         </tbody>
     </table>
 </div>
 
-<div id="matrizMassas" style="display: none;">
+<div id="matrizMassas" class="topo_matrix" style="display: none;">
     <table>
         <thead>
             <tr>
@@ -239,11 +362,16 @@
                 <td>220,00</td>
                 <td><input type="number" value="0" min="0"></td>
             </tr>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td><a href="pagina_pagamento.html" class="proxima_pagina">pagina de pagamento >></a></td>
+            </tr>
         </tbody>
     </table>
 </div>
 
-<div id="matrizSaladas" style="display: none;">
+<div id="matrizSaladas" class="topo_matrix" style="display: none;">
     <table>
         <thead>
             <tr>
@@ -268,10 +396,16 @@
                 <td>60,00</td>
                 <td><input type="number" value="0" min="0"></td>
             </tr>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td><a href="pagina_pagamento.html" class="proxima_pagina">pagina de pagamento >></a></td>
+            </tr>
         </tbody>
     </table>
 </div>
-<div id="matrizPorcoes" style="display: none;">
+
+<div id="matrizPorcoes" class="topo_matrix" style="display: none;">
     <table>
         <thead>
             <tr>
@@ -282,53 +416,73 @@
         </thead>
         <tbody>
             <tr>
-                <td>Bife à Cavalo</td>
-                <td>180,00</td>
+                <td>Fritas</td>
+                <td>40,00</td>
                 <td><input type="number" value="0" min="0"></td>
             </tr>
             <tr>
-                <td>Bife Acebolado</td>
-                <td>200,00</td>
+                <td>Polenta Frita (unidade)</td>
+                <td>3,50</td>
                 <td><input type="number" value="0" min="0"></td>
             </tr>
             <tr>
-                <td>Bife à Milanesa</td>
-                <td>220,00</td>
+                <td>Arroz</td>
+                <td>20,00</td>
                 <td><input type="number" value="0" min="0"></td>
+            </tr>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td><a href="pagina_pagamento.html" class="proxima_pagina">pagina de pagamento >></a></td>
             </tr>
         </tbody>
     </table>
 </div>
-
+<div id="total">Total: R$ <span id="totalValue">0.00</span></div>
 <script>
-    function mostrarMatriz() {
-        // Esconder todas as matrizes
-        document.querySelectorAll('[id^="matriz"]').forEach(function(element) {
-            element.style.display = 'none';
-        });
+// Função para mostrar a matriz correspondente ao tipo de prato selecionado
+function mostrarMatriz() {
+    // Esconder todas as matrizes
+    document.querySelectorAll('[id^="matriz"]').forEach(function (element) {
+        element.style.display = 'none';
+    });
 
-        // Obter o valor selecionado no seletor
-        var tipoPrato = document.getElementById("tipoPrato").value;
+    // Obter o valor selecionado no seletor
+    var tipoPrato = document.getElementById("tipoPrato").value;
 
-        // Mostrar a matriz correspondente ao tipo de prato selecionado
-        document.getElementById("matriz" + tipoPrato.charAt(0).toUpperCase() + tipoPrato.slice(1)).style.display = 'block';
-    }
+    // Mostrar a matriz correspondente ao tipo de prato selecionado
+    document.getElementById("matriz" + tipoPrato.charAt(0).toUpperCase() + tipoPrato.slice(1)).style.display = 'block';
+}
+// Variável global para armazenar o valor total
+var valoresPratos = {};
 
-    // Função para diminuir a quantidade
-    function diminuirQuantidade(numeroLinha) {
-        var quantidadeInput = document.getElementById("linha" + numeroLinha).querySelector("input[type='number']");
-        var quantidade = parseInt(quantidadeInput.value);
-        if (quantidade > 0) {
-            quantidadeInput.value = quantidade - 1;
+// Função para calcular o total
+function calcularTotal() {
+    total = 0; // Zerar o total antes de recalcular
+
+    // Iterar sobre todos os inputs visíveis
+    for (var key in valoresPratos) {
+        if (valoresPratos.hasOwnProperty(key)) {
+            total += valoresPratos[key];
         }
     }
-
-    // Função para aumentar a quantidade
-    function aumentarQuantidade(numeroLinha) {
-        var quantidadeInput = document.getElementById("linha" + numeroLinha).querySelector("input[type='number']");
-        var quantidade = parseInt(quantidadeInput.value);
-        quantidadeInput.value = quantidade + 1;
+    // Atualizar o texto do campo Total
+    document.getElementById('total').textContent = 'Total: R$ ' + total.toFixed(2);
     }
+    // Adicione um evento de escuta a todos os inputs de quantidade
+document.querySelectorAll('input[type="number"]').forEach(function (input) {
+    input.addEventListener('input', function () {
+        // Obter o valor do prato a partir do texto da célula anterior
+        var preco = parseFloat(input.parentNode.previousElementSibling.textContent.replace(',', '.'));
+
+        // Armazenar o valor do prato no objeto valoresPratos
+        valoresPratos[input.id] = preco * parseInt(input.value);
+
+        // Recalcular o total
+        calcularTotal();
+    });
+});
+
 </script>
 
 </body>

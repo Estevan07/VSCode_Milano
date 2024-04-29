@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Italiano</title>
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background-color:white;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            text-align: center; /* Centralizar conteúdo */
+            padding-top: 140px
+        }
+        #header {
+            background-image: url('img/italia.jpg'); /* Aqui você pode inserir a foto ao topo do site */
+            background-size:  auto 100%;
+            background-position: center top;
+            position: absolute; /* Posicionamento absoluto */
+            top: 0; /* Colocar no topo */
+            left: 0; /* Colocar no canto esquerdo */
+            right: 0;
+            
+            
+            padding: 20px;
+            text-align: center;
+            display: flex; /* Usar flexbox para alinhar verticalmente */
+            border-bottom-right-radius: 5%;
+            border-bottom-left-radius: 5%;
+        }
+        #contact {
+            background-color: #065304;
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        #menu-logo {
+            border: 5px solid black;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            background-image: url('img/imagem.jpg');
+            background-size: cover;
+            margin-right: 20px;
+            display: inline-block; /* Para alinhar verticalmente com o texto */
+        }
+        #menu-title {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 40px;
+            display: inline-block; /* Para alinhar verticalmente com o logo */
+            vertical-align: middle; /* Alinhar verticalmente com o logo */
+            margin-top: 40px;
+        }
+        #texto_interativo{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin-top: 15px;
+        }
+        ul{
+            list-style-type: none;
+        }
+
+        #forma_retirada{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            float:left;
+            padding-top: 30px;
+            padding-left: 45px;
+        }
+
+        #opcoes_tele_entrega{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin:5px;
+        }
+        #bairro{
+            
+            position: relative;
+            margin-top:50px;
+            margin-bottom:15px;
+        }
+        
+        #observacoes{
+            position: relative;
+            margin-top:15px;
+            margin-bottom:15px;
+            
+        }
+
+        #horarioRetiradaTE{
+            position: relative;
+            margin-top:15px;
+        }
+
+
+        #opcoes_para_levar{
+            position:relative;
+            float:left  
+        }
+        #nomeResponsavel{
+            position:relative;
+            margin-top: 60px;
+            margin-bottom: 15px;
+        }
+        #horarioRetiradaPL{
+            position:relative;
+        }
+
+        #botaoPagamento {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #065304;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+             /* Inicialmente, torna o botão não clicável */
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="header">
+        <div id="menu-logo"></div>
+        <div id="menu-title">Informações Pessoais</div>
+    </div>
+    <div id="contact">
+        <p>Número para reservas, contato: (54) xxxxx-xxxx</p>
+    </div>
+    <div id="forma_retirada">
+        <label for="formaRetirada"></label>
+        <select id="formaRetirada" onchange="mostrarOpcoesRetirada()">
+            <option value="none" selected disabled hidden>Forma de Retirada</option>
+            <option value="tele_entrega">Tele-Entrega</option>
+            <option value="para_levar">Para Levar</option>
+        </select>
+    </div>
+    <!-- Opções de retirada: Tele-Entrega -->
+    <div id="opcoes_tele_entrega" style="display:none;">
+        <label for="bairro">Bairro:</label>
+        <input type="text" id="bairro">
+        <label for="rua">Rua:</label>
+        <input type="text" id="rua">
+        <label for="numero">Número:</label>
+        <input type="text" id="numero">
+        
+        <br>
+        <label for="complemento">Complemento (casa/apartam):</label>
+        <input type="text" id="complemento">
+        
+        <br>
+        <label for="observacoes"></label>
+        <textarea id="observacoes" rows="4" cols="30">Observações:</textarea>
+        <br>
+
+        <button onclick="capturarLocalizacao()">Capturar Localização via Google Maps</button>
+        <br>
+
+        <label for="horarioRetiradaTE">Horário para Retirada:</label>
+        <input type="datetime-local" id="horarioRetiradaTE">
+    </div>
+
+    <!-- Opções de retirada: Para Levar -->
+    <div id="opcoes_para_levar" style="display: none;">
+        <label for="nomeResponsavel">Nome do Responsável:</label>
+        <input type="text" id="nomeResponsavel">
+        <br>
+        <label for="horarioRetiradaPL">Data para Retirada:</label>
+        <input type="datetime-local" id="horarioRetiradaPL">
+        
+    </div>
+
+    <!-- Botão de Pagamento -->
+    <button id="botaoPagamento" onclick="validarCampos()">Ir para o Pagamento</button>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6Bc0t5SvCZyDsksj2rz3FndM6N0RyZhY&callback=carregarAPI"></script>
+<script>
+    // Função para mostrar as opções de retirada correspondentes à forma selecionada
+    function mostrarOpcoesRetirada() {
+        var formaRetirada = document.getElementById("formaRetirada").value;
+
+        // Esconder todas as opções
+        document.getElementById("opcoes_tele_entrega").style.display = "none";
+        document.getElementById("opcoes_para_levar").style.display = "none";
+
+        // Mostrar as opções correspondentes à forma selecionada
+        if (formaRetirada === "tele_entrega") {
+            document.getElementById("opcoes_tele_entrega").style.display = "block";
+        } else if (formaRetirada === "para_levar") {
+            document.getElementById("opcoes_para_levar").style.display = "block";
+        }
+    }
+
+    // Função para capturar a localização via Google Maps
+    function capturarLocalizacao() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                // Obter as coordenadas
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+
+                // Chamar a API de Geolocalização reversa para obter o endereço
+                var geocoder = new google.maps.Geocoder();
+                var latlng = new google.maps.LatLng(latitude, longitude);
+                geocoder.geocode({ 'latLng': latlng }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (results[0]) {
+                            // Preencher os campos com os dados do endereço
+                            for (var i = 0; i < results[0].address_components.length; i++) {
+                                var addressType = results[0].address_components[i].types[0];
+                                var address = results[0].address_components[i].long_name;
+                                if (addressType === 'route') {
+                                    document.getElementById('rua').value = address;
+                                } else if (addressType === 'neighborhood') {
+                                    document.getElementById('bairro').value = address;
+                                } else if (addressType === 'street_number') {
+                                    document.getElementById('numero').value = address;
+                                }
+                            }
+                        } else {
+                            alert('Endereço não encontrado.');
+                        }
+                    } else {
+                        alert('Erro ao buscar o endereço: ' + status);
+                    }
+                });
+            });
+        } else {
+            alert('Geolocalização não suportada neste navegador.');
+        }
+    }
+
+    // Função para validar os campos e exibir o botão de pagamento
+    function validarCampos() {
+        var formaRetirada = document.getElementById("formaRetirada").value;
+        var bairro = document.getElementById("bairro").value;
+        var rua = document.getElementById("rua").value;
+        var numero = document.getElementById("numero").value;
+        var complemento = document.getElementById("complemento").value;
+        var observacoes = document.getElementById("observacoes").value;
+        var nomeResponsavel = document.getElementById("nomeResponsavel").value;
+
+        if (formaRetirada === "tele_entrega"){
+            if(bairro === "" || rua === "" || numero === "" || complemento === "" || observacoes === ""){
+                alert("Por favor, preencha todos os campos para prosseguir.");
+            }
+            else{
+                window.location.href = "pagamento_tele.html";
+            }
+        }
+        else if (formaRetirada === "para_levar"){
+            if (nomeResponsavel === "") {
+                alert("Por favor, preencha todos os campos para prosseguir.");
+            }
+            else{
+                window.location.href = "pagamento_levar.html";
+            }
+    }
+}
+</script>
+
+</body>
+</html>

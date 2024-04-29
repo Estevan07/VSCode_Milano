@@ -41,6 +41,7 @@
             font-family:Georgia, 'Times New Roman', Times, serif;
             margin-top: 50px;
             list-style-type: none;
+            margin-bottom: 150px;
         }
         .option {
             font-size: 30px;
@@ -177,7 +178,7 @@
     <a href="Menu_Milano.html" class="option">MENU</a>
     <a href="Pedido_para_levar.html" class="option">LER QRCODE</a>
     <a href="Pedido_para_levar.html" class="option">PEDIDOS PARA LEVAR</a>
-    <a href="#" class="option">INFORMAÇÕES</a>
+    <a href="informações.html" class="option">INFORMAÇÕES</a>
 </div>
 
 <div id="contact">
@@ -230,7 +231,9 @@
             slides[i].style.display = "none";
         }
         slideIndex++;
-        if (slideIndex > slides.length) {slideIndex = 1}
+        if (slideIndex > slides.length) {
+        slideIndex = 1
+    }
         slides[slideIndex-1].style.display = "block";
         setTimeout(showSlides, 5000); // Change image every 3 seconds
     }
@@ -248,16 +251,18 @@ function showSlidesTemplate() {
         slides[i].style.display = "none";
     }
     templateIndex++;
-    if (templateIndex > slides.length) {templateIndex = 1}
+    if (templateIndex > slides.length) {
+        templateIndex = 1
+    }
     slides[templateIndex-1].style.display = "block";
     setTimeout(showSlidesTemplate, 5000); // Change image every 3 seconds
 }
 
 function plusSlidesTemplate(n) {
-    showSlidesTemplate(templateIndex += n);
+    showSlidesTemplate(templateIndex += n);     
 }
 </script>
-
+    
 </body>
 </html>
 
